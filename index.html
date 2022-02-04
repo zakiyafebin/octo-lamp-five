@@ -17,21 +17,23 @@
     <title>Quiz</title>
   </head>
   <body>
-    <div class="container m-5" id="start">
-      <div class="card" style="width: 18rem">
+    <div class="container m-5 mx-auto  " id="start">
+      <div class="card mx-auto" style="width: 18rem">
         <div class="card-body">
-          <h5 class="card-title">Test your knowledge</h5>
-          <p class="card-text">Some quick description about the quiz .</p>
-          <a class="btn btn-primary">Start</a>
+          <h5 class="card-title text-info">Test your knowledge</h5>
+          <p class="card-text">There are 5 Questions and you have 2 minutes to finish.</p>
+          <div class="text-center">
+            <a class="btn btn-info ">Start</a>
+          </div>          
         </div>
       </div>
     </div>
 
     <!-- (B) QUIZ CONTAINER -->
     <div class="container" id="quizBlock" style="display: none">
-      <div class="mb-5">
+      <div class="mb-5 text-center">
         <h2>Test your knowledge</h2>
-        - Time remaining <span id="time">01:00</span>
+        - Time remaining <span class="text-danger" id="time">01:00</span>
       </div>
       <div id="quizWrap"></div>
 
@@ -42,8 +44,8 @@
         <button type="button" class="btn btn-primary" id="btnReset">
           Reset Quiz
         </button>
-        <span id="score"></span>
       </div>
+      <div><h3 class="text-center" ><span id="score"></span></h3></div>
     </div>
 
     <!-- Optional JavaScript -->

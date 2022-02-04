@@ -44,9 +44,20 @@ window.addEventListener('DOMContentLoaded', () => {
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    {
+      q: 'Which type of JavaScript language is ___',
+      o: ['Object-Oriented', 'Object-Based', 'Assembly-language', 'High-level'],
+      a: 1, 
+     
+    },
+    {
+      q: "Who invented JavaScript?",
+      o: ['Douglas Crockford', 'Sheryl Sandberg', 'Brendan Eich', 'Tim Berners-Lee'],
+      a: 2,
+    },
   ];
 
-  // function to Display the quiz questions and answers from the object
+  // function to Display the quiz questions and answers from the object-------------------
   const displayQuiz = () => {
     const quizWrap = document.querySelector('#quizWrap');
     let quizDisplay = '';
@@ -62,8 +73,8 @@ window.addEventListener('DOMContentLoaded', () => {
       quizWrap.innerHTML = quizDisplay;
     });
   };
-
-  // Calculate the score
+  
+  // Calculate the score------------------------------------------------
   const calculateScore = () => {
     let score = 0;
     quizArray.map((quizItem, index) => {
@@ -76,15 +87,64 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (quizItem.a == i) {
           //change background color of li element here
+          liElement.style.backgroundColor = "#D3D3D3"
         }
 
         if (radioElement.checked) {
           // code for task 1 goes here
+          if (quizItem.a == i) {
+            //change background color of li element here
+            score = score + 1;
+            //alert(score) 
+            
+          }  
         }
       }
     });
+    printScore(score);
+    btnSubmit.disabled = true;     
   };
+  //-----------------------------------------------------------------------------------------
+  function printScore(score){
+    let displayScore = document.getElementById('score');
+    let textScore ='Your Score is : '+ score+" / "+ quizArray.length; 
+    displayScore.innerHTML = textScore;  
+  }
+  //Timer-----------------------------------------------------------------------------------
+   //Display timber
+   function timer(){
+    let startingTime = 1;
+    let time = startingTime * 60;
+    const setTimer = document.getElementById('time');
+    setInterval(updateTimer,1000);
+    function updateTimer(){
+      let minutes = Math.floor(time / 60);
+      let seconds = time % 60;
+      
+      //console.log(minutes,seconds)
+      if(minutes == 0 && seconds == 0){
+        calculateScore();
+        //setTimeout(calculateScore(),0);
+        setTimer.innerHTML = `0 : 00`
+        btnSubmit.disabled = true;
 
+      
+      }
+        else{
+          setTimer.innerHTML = `${minutes} : ${seconds}`
+          time--;
+        }
+    }
+
+
+}
   // call the displayQuiz function
   displayQuiz();
+  timer();
+
+  const btnSubmit = document.getElementById('btnSubmit');
+  btnSubmit.addEventListener("click",calculateScore);
+    
+  const resetBtn = document.getElementById('btnReset');
+  resetBtn.addEventListener("click",() =>  window.location.reload());
 });
